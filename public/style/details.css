@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.div_details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form_details {
+    padding: 50px 0;
+}
+
+.form_details a {
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+}
+
+.form_title {
+    font-family: "Montserrat", sans-serif;
+}
+
+/* ============= div form ============== */
+
+.form_details div {
+    text-align: start;
+}
+
+.input_details {
+    padding: 9px;
+    border: 0.2px solid lightgrey;
+    margin-top: 10px;
+    width: 600px;
+    border-radius: 3px;
+}
+
+.input_details:focus {
+    border: 1px solid black;
+}
+
+.input_details::placeholder {
+    font-family: "Montserrat", sans-serif;
+    opacity: 1;
+}
+
+.input_details:hover {
+    cursor: none;
+}
+
+.form_details {
+    font-family: "Montserrat", sans-serif;
+}
+/* =========================================== */
+
+/* ============= signin input ============== */
+
+/* .modifier {
+    color: white;
+    border: 1px solid dodgerblue;
+    background: linear-gradient(to left, dodgerblue 50%, rgb(97, 255, 97) 50%)
+        right;
+    background-size: 200%;
+    padding: 9px;
+    transition: 2s ease-out;
+    width: 619px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.modifier:hover {
+    transition: 0.9s;
+    color: black;
+    cursor: pointer;
+    background-position: left;
+}
+
+.modifier:not(:hover) {
+    transition: 0.9s;
+} */
+
+/* =================================== */
+
+/* .erreur {
+    color: red;
+} */
