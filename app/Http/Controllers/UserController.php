@@ -6,18 +6,31 @@ use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
 
     public function logIn(Request $request){
         $credentials = $request->only('name', 'password');
-        if(Auth::attempt($credentials)){
+        $name = $credentials['name'];
+        $password = $credentials['password'];
+        $admin = User::where('name', '=', $name)->where('password', '=', $password)->first();
+        if($admin){
+            session()->put('adminId', $admin->id);
             return redirect('/accueil');
         }else{
             session()->flash('failed', 'Vous êtes pas un admin!');
             return back()->onlyInput('name', 'password');
         };
+    }
+
+    public function logOut(){
+        
+        if(session()->has('adminId')){
+            session()->pull('adminId');
+            return redirect('/');
+        }
     }
 
     // public function index(Request $request){

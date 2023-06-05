@@ -10,13 +10,14 @@
     <nav>
         <ul>
             <li><a href="/create">Ajouter un employé!</a></li>
-            <li><a href="/">Se deconnecter!</a></li>
+            <li><a href="/logOut">Se deconnecter!</a></li>
         </ul>
     </nav>
     <div>
         {{-- @foreach(Session()->get('admin') as $admin)
                 <h1> Bonjour {{ $admin }} </h1>
         @endforeach --}}
+        <h1>Bonjour {{ $admin->name }}</h1>
         <h1>Liste des employes {{ App\Models\Employe::count() }}</h1>
         <ul>
             @foreach($employes as $employe)

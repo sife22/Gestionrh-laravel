@@ -20,8 +20,9 @@ Route::get('/', function () {
 });
 
 Route::post('/logIn', [UserController::class, 'logIn']);
+Route::get('/logOut', [UserController::class, 'logOut']);
 
-Route::get('/accueil', [EmployeController::class, 'index']);
+Route::get('/accueil', [EmployeController::class, 'index'])->middleware('havetolog');
 
 Route::get('/create', [EmployeController::class, 'create']);
 Route::post('/storeData', [EmployeController::class, 'storeData']);

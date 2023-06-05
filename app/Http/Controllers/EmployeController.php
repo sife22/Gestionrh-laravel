@@ -13,7 +13,8 @@ class EmployeController extends Controller
     // ============== afficher tout les employes ================
     public function index(Request $request){
         $employes = Employe::all();
-        return view('accueil')->with(['employes' => $employes]);
+        $admin = User::find(session()->get('adminId'));
+        return view('accueil')->with(['employes' => $employes, 'admin'=> $admin]);
     }
     // ==========================================================
 
