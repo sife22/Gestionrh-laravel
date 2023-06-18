@@ -18,10 +18,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/accueil">Bonjour {{ Str::upper($admin->nom) }}</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/create">Ajouter un employe</a>
+                <a class="nav-link active" aria-current="page" href="/create">Ajouter un employe</a>
               </li>
             </ul>
             
@@ -30,14 +27,18 @@
         </div>
       </nav>
 
+
+
+
     <div>
-        <h2>Bonjour M/Mme {{ Str::upper($admin->nom) }}</h2>
-        <h1>Liste des employes {{ App\Models\Employe::count() }}</h1>
+        
+        {{-- <h1>Bonjour {{ $admin->name }}</h1> --}}
+        {{-- <h1>Liste des employes {{ App\Models\Employe::count() }}</h1> --}}
 
         <form class="d-flex" role="search" method="POST" action="findOne">
             @csrf
-            <input name="numero_employe" class="form-control me-2" type="search" placeholder="Rechercher par Numero employé" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            <input name="numero_employe" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
 
 
@@ -51,7 +52,6 @@
                 <th scope="col">Details</th>
                 <th scope="col">Modification</th>
                 <th scope="col">Suppression</th>
-                <th scope="col">Congé</th>
               </tr>
             </thead>
             <tbody>
@@ -63,7 +63,6 @@
                 <td><a href="details/{{ $employe->id }}">Details</a></td>
                 <td><a href="edit/{{ $employe->id }}">Modifier</a></td>
                 <td><a href="delete/{{ $employe->id }}">Supprimer</a></td>
-                <td><a href="conge/{{ $employe->id }}">Prendre un congé</a></td>
               </tr>
             @endforeach
 
@@ -73,11 +72,7 @@
 
 
 
-        {{-- <ul>
-            @foreach($employes as $employe)
-                <li>{{ $employe->nom }} . {{ $employe->prenom }} . {{ $employe->numero_employe }} . / <a href="edit/{{ $employe->id }}">Modifier</a> <a href="delete/{{ $employe->id }}">Supprimer</a> <a href="details/{{ $employe->id }}">Afficher</a></li>
-            @endforeach
-        </ul> --}}
+        
     </div>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 </body>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('date_naissance');
             $table->date('date_embauche');
             $table->string('poste');
+            $table->integer('conge');
             $table->integer('salaire');
         });
     }

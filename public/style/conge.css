@@ -1,0 +1,28 @@
+form {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    /* background-color: red; */
+}
+
+.succes {
+    color: greenyellow;
+}
+
+.failled {
+    color: red;
+}
+
+.justification {
+    color: orange;
+}
+
+.required {
+    color: dodgerblue;
+}
+
+.lesdeux {
+    color: tomato;
+}

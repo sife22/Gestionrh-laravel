@@ -15,7 +15,7 @@
         <br>
         <div>
             <p class="p">Je soussigné(e) 
-                _____________________
+                {{ Str::upper($admin->nom) }} {{ Str::upper($admin->prenom) }}
                 agissant en qualité de Responsable RH dans l'entreprise MC, <br> certifie par la présente que M,Mme <i><strong>{{ $employe->nom }} {{ $employe->prenom }}</strong></i> est employé(e) par notre entreprise en qualité de {{ $employe->poste }} depuis le {{ $employe->date_embauche }}.
             </p>
         </div>

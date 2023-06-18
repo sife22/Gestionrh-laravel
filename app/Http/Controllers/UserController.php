@@ -12,10 +12,10 @@ class UserController extends Controller
 {
 
     public function logIn(Request $request){
-        $credentials = $request->only('name', 'password');
-        $name = $credentials['name'];
+        $credentials = $request->only('nom', 'password');
+        $name = $credentials['nom'];
         $password = $credentials['password'];
-        $admin = User::where('name', '=', $name)->where('password', '=', $password)->first();
+        $admin = User::where('nom', '=', $name)->where('password', '=', $password)->first();
         if($admin){
             session()->put('adminId', $admin->id);
             return redirect('/accueil');

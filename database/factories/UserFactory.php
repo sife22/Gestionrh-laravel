@@ -19,10 +19,11 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'amine',
-            'email' => 'amine@gmail.com',
+            'nom' => 'Ibrahimi',
+            'prenom' => 'Aya',
+            'email' => 'aya@gmail.com',
             'email_verified_at' => now(),
-            'password' => 'amine22', // password
+            'password' => '22', // password
             'remember_token' => Str::random(10),
         ];
     }

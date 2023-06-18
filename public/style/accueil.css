@@ -1,0 +1,13 @@
+#logout:hover {
+    color: red;
+    transition: 0.5s;
+    transform: scale(1.05);
+}
+
+#logout {
+    padding-left: 10px;
+}
+
+#logout:not(:hover) {
+    transition: 0.5s;
+}

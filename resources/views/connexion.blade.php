@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style/connexion.css" />
+    <link rel="stylesheet" href="../style/connexion.css" />
     <title>Connexion</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
             <div>
               <label>
                 Nom : <br />
-                <input type="text" name="name" placeholder="Nom :" value="{{ old('name') }}"  class="input_connexion" />
+                <input type="text" name="nom" placeholder="Nom :" value="{{ old('name') }}"  class="input_connexion" />
               </label>
             </div>
             <br />

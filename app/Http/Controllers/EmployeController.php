@@ -10,6 +10,11 @@ use Illuminate\Validation\ValidationException;
 
 class EmployeController extends Controller
 {
+
+    public function connexion(){
+        return view('connexion');
+    }
+
     // ============== afficher tout les employes ================
     public function index(Request $request){
         $employes = Employe::all();
@@ -17,6 +22,74 @@ class EmployeController extends Controller
         return view('accueil')->with(['employes' => $employes, 'admin'=> $admin]);
     }
     // ==========================================================
+
+    // ================= recherche ==========================
+    public function findOne(Request $request){
+        $numero_employe = $request->input('numero_employe');
+        if($numero_employe === null){
+            return redirect()->back();
+        }else{
+            $employes = Employe::all()->where('numero_employe', '=', $numero_employe);
+            return view('findone')->with('employes', $employes);
+        }
+    }
+    // =============================================================
+
+    // ============== congé ===================
+    public function conge($id){
+        $employe = Employe::find($id);
+        return view('conge')->with('employe', $employe);
+    }
+    // =====================================
+
+    // ============== prendre congé ===================
+    public function setConge(Request $request, $id){
+        // $validateData = $request->validate([
+        //     'duree'=>'required|integer'
+        // ]);
+        $duree = $request['duree'];
+        if($duree){
+            $employe = Employe::find($id);
+
+            if($duree <= $employe->conge){
+                if($request['non'] && !$request['oui']){
+                    $employe->salaire = $employe->salaire - (100 * $duree);
+                    $employe->conge = $employe->conge - $duree;
+                    $employe->save();
+                    session()->flash('succes', 'Votre opération a été effuctuer avec succes. -'.$duree. ' jours');
+                    return redirect()->back();
+                }elseif($request['oui'] && !$request['oui']){
+                    if($request['justification']){
+                        $employe->conge = $employe->conge - $duree;
+                        $employe->save();
+                        session()->flash('succes', 'Votre opération a été effuctuer avec succes. -'.$duree. ' jours');
+                        return redirect()->back();
+                    }else{
+                        session()->flash('justification', 'Tu dois entrer la justification');
+                        return redirect()->back();
+                    }
+                }elseif($request['non'] && $request['oui']){
+                    session()->flash('lesdeux', 'Tu as un erreur sur la justification!');
+                    return redirect()->back();
+                }
+                
+                elseif(!$request['oui'] && !$request['non']){
+                        session()->flash('required', 'Tu dois remplir tous les champs');
+                        return redirect()->back();
+                }
+            }elseif($duree > $employe->conge){
+                session()->flash('failled', 'Tu peux pas prendre un congé');
+                return redirect()->back();
+            }
+            }
+            else{
+                echo 'hah';
+                    session()->flash('required', 'Tu dois remplir les champs');
+                    return redirect()->back();
+            }
+            
+        }
+        // =====================================
 
 
     // ============= page d'ajoute d'un employe ===================
@@ -42,7 +115,8 @@ class EmployeController extends Controller
     // ============= page attestation d'un employe ===================
     public function attestation($id){
         $employe = Employe::find($id);
-        return view('attestation')->with(['employe'=> $employe]);
+        $admin = User::find(session()->get('adminId'));
+        return view('attestation')->with(['employe'=> $employe, 'admin'=>$admin]);
     }
     // =============================================
 
@@ -57,6 +131,8 @@ class EmployeController extends Controller
             'date_naissance' => 'required',
             'poste' => 'required|string',
             'salaire' => 'required',
+        ], [
+            'tel.min'=>'le tel doit etre super à 8'
         ]);
 
         if($validateData){

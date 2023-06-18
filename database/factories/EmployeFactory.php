@@ -27,6 +27,7 @@ class EmployeFactory extends Factory
             'date_naissance' => $this->faker->dateTimeBetween(),
             'date_embauche' => $this->faker->dateTimeThisYear(),
             'poste' => $this->faker->word(),
+            'conge' => 30,
             'salaire' => $this->faker->numberBetween(4000, 10000),
         ];
     }
